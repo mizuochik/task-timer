@@ -1,0 +1,22 @@
+#!/bin/bash
+
+TITLE='Task Timer'
+TIME_LEN=20
+
+notify_message() {
+    local left=$1
+    local msg=$2
+    echo $msg
+    if [[ $(( $left % 5 )) -eq 0 ]]
+    then
+        osascript -e 'display notification "'"$msg"'" with title "'"$TITLE"'"'
+    fi
+}
+
+for left in $(seq $TIME_LEN 1)
+do
+    notify_message $left "$left minutes left"
+    sleep 60
+done
+
+notify_message 0 "Time is up"
