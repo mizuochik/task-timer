@@ -1,7 +1,13 @@
 #!/bin/bash
 
+if [[ $# -ne 1 ]]
+then
+    echo Specify time >&2
+    exit 1
+fi
+
 TITLE='Task Timer'
-TIME_LEN=20
+TIME_LEN=$1
 
 notify_message() {
     local left=$1
